@@ -1,21 +1,25 @@
-import type { Preview } from '@storybook/nextjs-vite'
+import type { Preview } from '@storybook/nextjs-vite';
+import '../src/components/openpep/tokens.css';
 
 const preview: Preview = {
   parameters: {
     controls: {
       matchers: {
-       color: /(background|color)$/i,
-       date: /Date$/i,
+        color: /(background|color)$/i,
+        date: /Date$/i,
       },
     },
-
     a11y: {
-      // 'todo' - show a11y violations in the test UI only
-      // 'error' - fail CI on a11y violations
-      // 'off' - skip a11y checks entirely
-      test: 'todo'
-    }
+      test: 'todo',
+    },
   },
+  decorators: [
+    (Story) => (
+      <div className="op-root" style={{ minHeight: '100%', background: 'var(--op-bg)' }}>
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export default preview;
